@@ -3,7 +3,7 @@ table {
     width: 600px;
     height: 600px;
     margin: auto;
-    margin-top: 200px;;
+    margin-top: 50px;
 }
 
 tr {
@@ -20,4 +20,12 @@ td {
     justify-content: center;
     align-items: center;
     font-size: 60px;
+}
+
+#start {
+    width: 100px;
+    height: 40px;
+    margin: auto;
+    margin-top: 50px;
+    display: block;
 }
