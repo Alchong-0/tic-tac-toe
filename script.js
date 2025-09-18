@@ -1,5 +1,5 @@
 const gameboard = (function () {
-    let gameboard = new Array(9);
+    let gameboard = ["", "", "", "", "", "", "", "", ""];
     const placeXO = (pos, player) => gameboard[pos] = player;
     const reset = () => gameboard.map((x) => "");
     const checkWinner = (pos) => {
@@ -91,6 +91,7 @@ const game = (function () {
                 player = "O";
             }
             turn++;
+            gameDisplay.updateDisplay();
         } else {
             console.log("Error: game is over, please reset game");
         }
@@ -98,4 +99,14 @@ const game = (function () {
     return { turn, startGame, takeTurn };
 })();
 
-
+const gameDisplay = (function () {
+    const addTile = (pos, player) => {
+        document.getElementById('tile' + pos).innerText = player;
+    };
+    const updateDisplay = () => {
+        for (let i = 0; i < gameboard.gameboard.length; i++) {
+            document.getElementById('tile' + i).innerText = gameboard.gameboard[i];
+        }
+    };
+    return { addTile, updateDisplay };
+})();
