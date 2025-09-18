@@ -1,0 +1,23 @@
+table {
+    border: 2px solid black;
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    margin-top: 200px;;
+}
+
+tr {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+}
+
+td {
+    border: 1px solid black;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
