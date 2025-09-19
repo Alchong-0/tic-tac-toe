@@ -1,5 +1,6 @@
 const tileElements = document.querySelectorAll("td");
 const startElement = document.getElementById("start");
+const resultElement = document.getElementById("result");
 
 const gameboard = (function () {
     let gameboard = ["", "", "", "", "", "", "", "", ""];
@@ -84,8 +85,10 @@ function createPlayer (name) {
 const game = (function () {
     let player = "O";
     let turn = 0;
-    const startGame = () => {
+    let names;
+    const startGame = (p1, p2) => {
         gameboard.reset();
+        names = [p1.name, p2.name];
         turn = 0;
     }
     const takeTurn = (pos) => {
@@ -93,9 +96,14 @@ const game = (function () {
         // Check if position is in bounds (Adding click display should make this unnecessary)
         if (turn < 9 && pos <= 8 && pos >= 0) {
             gameboard.placeXO(pos, player);
+            turn++;
             if (gameboard.checkWinner(pos)) {
-                console.log(`${player} wins.`);
+                resultElement.innerText = player === "O" ? `${names[0]} wins.` : `${names[1]} wins.`;
+                resultElement.style.display = "block";
                 turn = 9;
+            } else if (gameboard.checkWinner(pos) === false && turn === 9) {
+                resultElement.innerText = `Game ended in a tie.`;
+                resultElement.style.display = "block";
             }
             // Alternate player turns
             if (player === "O") {
@@ -103,13 +111,12 @@ const game = (function () {
             } else {
                 player = "O";
             }
-            turn++;
             gameDisplay.updateDisplay();
         } else {
             console.log("Error: game is over, please reset game");
         }
     }
-    return { turn, startGame, takeTurn };
+    return { startGame, takeTurn };
 })();
 
 const gameDisplay = (function () {
@@ -146,9 +153,12 @@ function clickTile(event) {
     game.takeTurn(position);
 }
 
-startElement.addEventListener("click", () => {
-    game.startGame();
+startElement.addEventListener("click", (event) => {
+    event.preventDefault();
+    let p1 = createPlayer(player1.value);
+    let p2 = createPlayer(player2.value);
+    game.startGame(p1, p2);
     gameDisplay.updateDisplay();
-    console.log(gameboard.gameboard);
+    resultElement.style.display = "none";
     enableTiles();
 });

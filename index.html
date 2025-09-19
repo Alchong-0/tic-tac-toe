@@ -6,7 +6,13 @@
     </head>
 
     <body>
-        <button id="start">Start/Restart</button>
+        <form id="info">
+            <label for="player1">Player 1:</label><br>
+            <input type="text" id="player1" name="player1"><br>
+            <label for="player2">Player 2:</label><br>
+            <input type="text" id="player2" name="player2"><br>
+            <input type="submit" id="start" value="Start/Restart">
+        </form>
         <table>
             <tr>
                 <td id="tile0">0</td>
@@ -24,6 +30,7 @@
                 <td id="tile8">8</td>
             </tr>
         </table>
+        <div id="result"></div>
         <script src="script.js"></script>
     </body>
 </html>

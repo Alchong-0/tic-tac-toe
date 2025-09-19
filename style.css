@@ -25,7 +25,29 @@ td {
 #start {
     width: 100px;
     height: 40px;
-    margin: auto;
-    margin-top: 50px;
     display: block;
+    margin: 5px;
+}
+
+#result {
+    display: none;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+#info {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#player1 {
+    margin: 5px;
+}
+
+#player2 {
+    margin: 5px;
 }
